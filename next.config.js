@@ -10,11 +10,9 @@ const nextConfig = {
   },
   poweredByHeader: false,
   publicRuntimeConfig: {
-    TESTS_URL: `${process.env.TESTS_URL}`
+    TESTS_URL: `${process.env.TESTS_URL}`,
+    CEP_API_TIMEOUT: `${process.env.CEP_API_TIMEOUT}`,
   },
 };
 
-module.exports = withPlugins(
-  [],
-  nextConfig
-);
+module.exports = withPlugins([], nextConfig);
