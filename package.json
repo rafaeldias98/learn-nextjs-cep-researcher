@@ -8,7 +8,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint --fix .",
     "format": "prettier --write ./**/*.{js,jsx,json}",
-    "test:e2e": "./node_modules/.bin/nightwatch"
+    "test:e2e": "./node_modules/.bin/nightwatch --headless"
   },
   "dependencies": {
     "axios": "^0.19.2",
