@@ -9,7 +9,7 @@ export default function CepPage({ address }) {
       <Head>
         <title>{address.cep}</title>
       </Head>
-      <Cep address={address}/>
+      <Cep address={address} />
     </Layout>
   );
 }
@@ -25,10 +25,10 @@ export async function getServerSideProps(context) {
   };
 }
 
-/// ///////////////////////////////////////// ///
-/// COMMENTED CODE BELOW IS A TEST TO         ///
-/// STATIC GENERATIONFOR DYNAMIC NEXTJS ROUTE ///
-/// ///////////////////////////////////////// ///
+/// ////////////////////////////////////////// ///
+/// COMMENTED CODE BELOW IS A TEST TO          ///
+/// STATIC GENERATION FOR DYNAMIC NEXTJS ROUTE ///
+/// ////////////////////////////////////////// ///
 // export async function getStaticProps({ params }) {
 //   const cepApi = new CepApi()
 //   const address = await cepApi.getAddressByCep(params.cep)

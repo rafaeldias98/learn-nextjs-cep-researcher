@@ -1,18 +1,21 @@
 {
   "name": "learn-nextjs-cep-researcher",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint --fix .",
-    "format": "prettier --write ./**/*.{js,jsx,json,md}"
+    "format": "prettier --write ./**/*.{js,jsx,json}",
+    "test:e2e": "./node_modules/.bin/nightwatch"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "gray-matter": "^4.0.2",
     "next": "9.3.5",
+    "next-compose-plugins": "^2.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "winston": "^3.3.3"

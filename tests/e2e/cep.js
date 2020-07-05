@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 
 describe('CEP Researcher', function () {
-  before((browser) => browser.url('http://localhost:3000/'));
+  before((browser) => browser.url(`${process.env.TESTS_URL}`));
 
   test('Step 1: Input valid CEP should return address info', function (browser) {
     browser
