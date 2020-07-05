@@ -31,7 +31,7 @@ export default function Home({ address }) {
           className={cepInputStyles.cepSearchSubmit}
         />
       </form>
-      <Cep address={address} home/>
+      <Cep address={address} home />
     </Layout>
   );
 }
