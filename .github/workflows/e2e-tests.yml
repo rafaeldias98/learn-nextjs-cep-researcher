@@ -1,0 +1,76 @@
+name: e2e tests
+
+on: [deployment_status]
+
+jobs:
+  mark-commit-status-pending:
+    name: Mark commit as "pending"
+    if: github.event.deployment_status.state == 'pending'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send request to Github API to change commit status
+        run: |
+          curl -L -X POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "pending",
+            "context": "e2e-tests",
+            "description": "Waiting Vercel's preview URL..."
+            }'
+
+  e2e-tests:
+    name: Run e2e tests in Vercel's preview URL
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Updating "pending" status with "Workflow URL"
+        run: |
+          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          curl -L -X POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "pending",
+            "context": "e2e-tests",
+            "description": "Preparing to run e2e tests...",
+            "target_url": "'${GITHUB_WORKFLOW_URL}'"
+            }'
+      - name: Checkout commit code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install npm deps
+        run: npm install
+
+      - name: Running e2e tests in Vercel's preview URL
+        run: npm run test:e2e
+        env:
+          NODE_ENV: 'ci'
+          TESTS_URL: ${{ github.event.deployment_status.target_url }}
+
+      - name: Send request to Github API to mark status as final
+        if: always()
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          JOB_STATUS=$(echo ${JOB_CONTEXT} | jq --raw-output '.status | ascii_downcase')
+          curl -L -X POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "'${JOB_STATUS}'",
+            "context": "e2e-tests",
+            "description": "Finishing e2e tests...",
+            "target_url": "'${GITHUB_WORKFLOW_URL}'"
+            }'

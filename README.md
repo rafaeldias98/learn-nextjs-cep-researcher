@@ -8,6 +8,7 @@ This repository is a self implementation of [Create a Next.js App Tutorial][1]
 
 ## :rocket: Start Develop Server
 ```sh
+$ cp .env.example .env
 $ npm run dev
 ```
 
