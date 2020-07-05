@@ -51,9 +51,6 @@ jobs:
       - name: Install npm deps
         run: npm install
 
-      - name: Start WebDriver
-        run: docker run -d -p 4444:4444 instrumentisto/geckodriver
-
       - name: Running e2e tests in Vercel's preview URL
         run: npm run test:e2e
         env:
