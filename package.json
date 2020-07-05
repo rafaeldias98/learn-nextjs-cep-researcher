@@ -1,6 +1,6 @@
 {
   "name": "learn-nextjs-cep-researcher",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -8,7 +8,7 @@
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint --fix .",
     "format": "prettier --write ./**/*.{js,jsx,json}",
-    "test:e2e": "./node_modules/.bin/nightwatch --headless"
+    "test:e2e": "./node_modules/.bin/nightwatch"
   },
   "dependencies": {
     "axios": "^0.19.2",
