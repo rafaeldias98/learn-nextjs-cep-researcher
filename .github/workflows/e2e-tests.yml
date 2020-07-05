@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send request to Github API to change commit status
+      - name: Sending request to Github API to change commit status
         run: |
           curl -L -X POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
@@ -43,21 +43,21 @@ jobs:
       - name: Checkout commit code
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Installing Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
 
-      - name: Install npm deps
+      - name: Installing npm dependencies
         run: npm install
 
       - name: Running e2e tests in Vercel's preview URL
-        run: npm run test:e2e
+        run: npm run test:e2e -- --headless
         env:
           NODE_ENV: 'ci'
           TESTS_URL: ${{ github.event.deployment_status.target_url }}
 
-      - name: Send request to Github API to mark status as final
+      - name: Sending request to Github API to change commit status
         if: always()
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
@@ -71,6 +71,6 @@ jobs:
           --data '{
             "state": "'${JOB_STATUS}'",
             "context": "e2e-tests",
-            "description": "Finishing e2e tests...",
+            "description": "e2e tests finished, updating commit status",
             "target_url": "'${GITHUB_WORKFLOW_URL}'"
             }'
