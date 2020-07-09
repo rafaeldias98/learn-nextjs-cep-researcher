@@ -1,7 +1,7 @@
 # CEP Researcher [Learning NextJS]
 This repository is a self-implementation of [Create a Next.js App Tutorial][1]
 
-![][6] ![][8] ![][10]
+![][6] ![][8] ![e2e tests][10]
 
 ## :top: Project
 ![][2]
@@ -53,7 +53,7 @@ If you find any problem or have a suggestion, please [open an issue][4].
 [7]:https://badgen.net/badge/icon/Vercel/black?icon=zeit&label
 [8]:https://img.shields.io/github/contributors/rafaeldias98/learn-nextjs-cep-researcher
 [9]:https://badgen.net/badge/license/MIT/black
-[10]:https://badgen.net/github/status/rafaeldias98/learn-nextjs-cep-researcher
+[10]:https://github.com/rafaeldias98/learn-nextjs-cep-researcher/workflows/e2e%20tests/badge.svg?branch=master&event=deployment_status
 [11]:https://www.youtube.com/channel/UCU5JicSrEM5A63jkJ2QvGYw
 [12]:https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
 [13]:https://nodejs.org/
