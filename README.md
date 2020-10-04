@@ -31,7 +31,7 @@ This repository has CI/CD configured with Github Actions + Vercel.
 ## :newspaper: Project Dependencies
 This project depends of [BrasilAPI][3], a project by [Filipe Deschamps][11] (a person who inspires me)
 
-## :wrench: Contribuiting
+## :wrench: Contributing
 ![contributions welcome][12]
 
 If you find any problem or have a suggestion, please [open an issue][4].
